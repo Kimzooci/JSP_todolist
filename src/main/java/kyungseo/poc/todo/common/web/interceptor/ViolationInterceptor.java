@@ -33,10 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kyungseo.poc.todo.common.AppConstants;
 import kyungseo.poc.todo.common.exception.ViolationException;
 
-/**
- * @author 박경서 (Kyungseo.Park@gmail.com)
- * @version 1.0
- */
+
 public class ViolationInterceptor implements HandlerInterceptor {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());

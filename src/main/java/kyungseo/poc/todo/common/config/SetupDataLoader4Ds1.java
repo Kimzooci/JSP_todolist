@@ -1,4 +1,3 @@
-
 package kyungseo.poc.todo.common.config;
 
 import java.time.LocalDate;
@@ -12,23 +11,22 @@ import org.springframework.transaction.annotation.Transactional;
 import kyungseo.poc.todo.jsp.persistence.entity.Todo;
 import kyungseo.poc.todo.jsp.persistence.repository.TodoRepository;
 
-
 @Component
 public class SetupDataLoader4Ds1 implements ApplicationListener<ContextRefreshedEvent> {
 
-    private boolean alreadySetup = false;
+    private volatile boolean alreadySetup = false; // volatile 플래그 추가
 
     @Autowired
     private TodoRepository todoRepository;
 
     @Override
-    @Transactional
     public void onApplicationEvent(final ContextRefreshedEvent event) {
         if (alreadySetup) return;
 
         String username = "kyungseo";
 
-        todoRepository.deleteByUserName(username); // 초기화
+        long deletedCount = todoRepository.deleteByUserName(username); // 초기화
+        System.out.println("Deleted " + deletedCount + " existing todos for user: " + username);
 
         LocalDate today = LocalDate.now();
         LocalDate tomorrow = today.plusDays(1);
@@ -52,7 +50,7 @@ public class SetupDataLoader4Ds1 implements ApplicationListener<ContextRefreshed
         todo.setDone(isDone);
 
         todo = todoRepository.save(todo);
+        System.out.println("Saved Todo: " + todo);
         return todo;
     }
-
 }

@@ -8,10 +8,6 @@ import java.util.stream.Collectors;
 
 import kyungseo.poc.todo.jsp.payload.TodoDto;
 
-/**
- * @author 박경서 (Kyungseo.Park@gmail.com)
- * @version 1.0
- */
 public class TodoServiceData {
 
     List<TodoDto> myTodoList;
