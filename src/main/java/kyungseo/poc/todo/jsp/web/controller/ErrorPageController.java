@@ -1,6 +1,7 @@
 package kyungseo.poc.todo.jsp.web.controller;
 
 import kyungseo.poc.todo.common.util.MessageSourceUtil;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,7 +10,8 @@ public class ErrorPageController {
 
     private final MessageSourceUtil messageSourceUtil;
 
-    public ErrorPageController(MessageSourceUtil messageSourceUtil) {
+    // @Lazy를 필드에 적용
+    public ErrorPageController(@Lazy MessageSourceUtil messageSourceUtil) {
         this.messageSourceUtil = messageSourceUtil;
     }
 
